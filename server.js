@@ -15,10 +15,10 @@ var app = express();
 var PORT = process.env.PORT || 8000;
 
 //should this below be bodyParser instead of express?
-app.use(express.urlencoded({
+app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(express.json());
+app.use(bodyParser.json());
 
 app.engine('handlebars', exphdbs({
     defaultLayout: "main"
