@@ -7,32 +7,33 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-var exphdbs = ("express-handlebars");
+var exphbs = require("express-handlebars");
 
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 8000;
+var PORT = process.env.PORT || 8050;
 
-//should this below be bodyParser instead of express?
+// Static directory to be served
+app.use(express.static("public"));
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
 
-app.engine('handlebars', exphdbs({
+app.engine("handlebars", exphbs({
     defaultLayout: "main"
 }));
-app.set("viewengine", "handlebars");
+app.set("view engine", "handlebars");
 
 
 
-// Static directory to be served
-app.use(express.static("public"));
+
 
 // Routes
 // =============================================================
-var routes = require("./controllers/burger_controller.js");
+var routes = require("./controllers/burgers_controller.js");
 app.use(routes);
 
 // // Here we introduce HTML routing to serve different HTML files
