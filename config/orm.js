@@ -11,7 +11,7 @@ function createQmarks(num) {
 
 function translateSql(obj) {
     var arr = [];
-    for (var key in ob) {
+    for (var key in ob) { //is this using obj parameter?
         var value = ob[key];
         if (Object.hasOwnProperty.call(ob, key)) {
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
@@ -82,3 +82,4 @@ var orm = {
 
     }
 }
+module.exports = orm;

@@ -22,10 +22,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+
+// Set Handlebars as the default templating engine.
 app.engine("handlebars", exphbs({
     defaultLayout: "main"
 }));
 app.set("view engine", "handlebars");
+
 
 
 

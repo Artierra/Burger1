@@ -3,6 +3,10 @@ var burger = require("../models/burger");
 
 var router = express.Router();
 
+router.get("/test", function (req, res) {
+    res.send('router is working fine')
+})
+
 router.get("/", function (req, res) {
     burger.selectAll(function (data) {
         var hdbrsObj = {
@@ -11,38 +15,37 @@ router.get("/", function (req, res) {
         console.log(hdbrsObj);
         res.render("index", hdbrsObj);
     });
-
-    router.post("/api/burgers", function (req, res) {
-        burger.insertOne(
-            ["burger_name", "devoured"],
-            [req.body.burger_name, req.body.devoured],
-            function (result) {
-                //send backthe ID of a new burger
-                res.json({
-                    id: result.insertId
-                });
+})
+router.post("/api/burgers", function (req, res) {
+    burger.insertOne(
+        ["burger_name", "devoured"],
+        [req.body.burger_name, req.body.devoured],
+        function (result) {
+            //send backthe ID of a new burger
+            res.json({
+                id: result.insertId
             });
-    });
-
-    router.put("/api/burgers/:id", function (req, res) {
-        var condition = "id - " + req.params.id;
-        console.log("condition", condition);
-        burger.updateOne({
-            devoure: req.body.devoured
-        }, condition, function (result) {
-            if (result, changedRows === 0) {
-                return res.status(404).end();
-            } else {
-                res.status(200).end();
-            }
         });
-    });
-    router.deleteOne(condition, function (result) {
-        if ((result, changedRows === 0)) {
+});
+
+router.put("/api/burgers/:id", function (req, res) {
+    var condition = "id - " + req.params.id;
+    console.log("condition", condition);
+    burger.updateOne({
+        devoure: req.body.devoured
+    }, condition, function (result) {
+        if (result, changedRows === 0) {
             return res.status(404).end();
         } else {
             res.status(200).end();
         }
-    })
+    });
 });
+// router.deleteOne(condition, function (result) {
+//     if ((result, changedRows === 0)) {
+//         return res.status(404).end();
+//     } else {
+//         res.status(200).end();
+//     }
+// })
 module.exports = router;

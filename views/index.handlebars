@@ -1,0 +1,21 @@
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Eat the Burger</h5>
+        <p class="card-text">Type what kind of burger youwant</p>
+        <input type="text" name="newburger" id="newburger">
+        <a id="create" href="#" class="btn btn-primary">Submit</a>
+        <!-- what happens after you submit-where do you put the html for this//-//other helpers if/unless -->
+        {{#each burgers}}
+        <p data-id={{this.id}}>{{this.burger_name}}</p>
+        {{/each}}
+    </div>
+</div>
+
+<script>
+    $('#create').on('click', function () {
+        console.log($('#newburger').val())
+
+    })
+
+</script>

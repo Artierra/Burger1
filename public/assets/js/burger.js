@@ -40,7 +40,7 @@ $(function () {
         $.ajax({
             type: "DELETE",
             url: "/api/burgers/" + id
-        }).then(loation.relaod());
+        }).then(location.relaod());
     });
 
 });

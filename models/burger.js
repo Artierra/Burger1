@@ -1,5 +1,5 @@
 var orm = require("../config/orm");
-
+console.log("inthe models", orm)
 var burger = {
     selectAll: function (callback) {
         orm.selectAll("burgers", function (res) {
