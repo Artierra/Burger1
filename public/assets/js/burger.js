@@ -25,7 +25,7 @@ $(function () {
         };
 
         $.ajax("/api/burgers", {
-            type: "PUT",
+            type: "PUT",//technically this should be PATCH
             data: devouredState
         }).then(function () {
             console.log("Burger has been devoured");
@@ -40,7 +40,7 @@ $(function () {
         $.ajax({
             type: "DELETE",
             url: "/api/burgers/" + id
-        }).then(location.relaod());
+        }).then(location.reload());
     });
 
 });
