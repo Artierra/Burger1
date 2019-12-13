@@ -1,21 +1,89 @@
-<div class="card" style="width: 18rem;">
-    <img src="../public/assets/img/burger.png" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Eat the Burger</h5>
-        <p class="card-text">Type what kind of burger youwant</p>
-        <input type="text" name="newburger" id="newburger">
-        <a id="create" href="#" class="btn btn-primary">Submit</a>
-        <!-- what happens after you submit-where do you put the html for this//-//other helpers if/unless -->
-        {{#each burgers}}
-        <p data-id={{this.id}}>{{this.burger_name}}</p>
-        {{/each}}
+<div class="container">
+    <div class="jumbotron">
+        <img src="../public/assets/img/burger.png" class="card-img-top" alt="burger image">
+        <h1 class="display-4">Eat the Burger!</h1>
+        <p class="card-text">Order some burgers, devour some burgers</p>
+        <hr class="my-4">
+        <p class="lead">
+            <input type="text" name="newburger" id="newburger" class="form-control" placeholder="Order here">
+            <a id="create-form" href="#" class="btn btn-primary">Submit</a>
     </div>
+
+    <form>
+        <div class="form-row">
+            <div class="col">
+                <label for="order" class="leftside">Burger Order</label>
+                {{!-- <input type="text" class="form-control" placeholder="Burger order here"> --}}
+                {{#each burgers}}
+                <p data-id={{this.id}}>{{this.burger_name}}</p>
+                {{/each}} </p>
+            </div>
+            <div class="col">
+                <label for="eat">Devour your burger</label>
+                {{!-- <input type="text" class="form-control" placeholder="Burgers eaten here"> --}}
+                <a id="create-form" href="#" class="btn btn-primary">Submit</a>
+                <!-- what happens after you submit-where do you put the html for this//-//other helpers if/unless -->
+                {{#each burgers}}
+                <p data-id={{this.id}}>{{this.burger_name}}</p>
+                {{/each}}
+            </div>
+        </div>
+    </form>
 </div>
 
+
+
+
+
 <script>
-    $('#create').on('click', function () {
+    $('#create-form').on('click', function () {
         console.log($('#newburger').val())
 
     })
+
+    $(function () {
+        $(" .create-form").on("submit", function (event) {
+            event.preventDefault();
+
+            var newBurger = {
+                burger_name: $("#newburger").val().trim(),
+                devoured: 0
+            };
+            $.ajax("/api/burgers", {
+                type: "POST",
+                data: newBurger
+            }).then(function () {
+                console.log("added new burger");
+                location.reload();
+            });
+        });
+
+        $(".eatburger").on("click", function (event) {
+            event.preventDefault();
+            var id = $(this).data("id");
+            var devouredState = {
+                devoured: 1
+            };
+
+            $.ajax("/api/burgers", {
+                type: "PUT",//technically this should be PATCH
+                data: devouredState
+            }).then(function () {
+                console.log("Burger has been devoured");
+                location.reload();
+            });
+        });
+        $(".trashburger").on("click", function (event) {
+            event.preventDefault();
+            var id = $(this).data("id");
+
+            //send delete request
+            $.ajax({
+                type: "DELETE",
+                url: "/api/burgers/" + id
+            }).then(location.reload());
+        });
+
+    });
 
 </script>
