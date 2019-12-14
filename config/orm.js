@@ -1,5 +1,5 @@
 var connection = require("../config/connection");
-//why two dots n filepath? these are in teh same folder
+//why two dots in filepath? these are in the same folder
 
 function createQmarks(num) {
     var arr = [];
@@ -11,9 +11,9 @@ function createQmarks(num) {
 
 function translateSql(obj) {
     var arr = [];
-    for (var key in ob) { //is this using obj parameter?
-        var value = ob[key];
-        if (Object.hasOwnProperty.call(ob, key)) {
+    for (var key in obj) { //is this using obj parameter?
+        var value = obj[key];
+        if (Object.hasOwnProperty.call(obj, key)) {
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
             }
@@ -26,6 +26,7 @@ function translateSql(obj) {
 var orm = {
     selectAll: function (table, callback) {
         var dbQuery = "SELECT * FROM " + table + ";";
+        console.log(dbQuery);
 
         connection.query(dbQuery, function (err, res) {
             if (err) {
@@ -42,7 +43,7 @@ var orm = {
             "VALUES (" + createQmarks(vals.length) + ")";
         //createQmarks(vals.length) is a helper function
         console.log(dbQuery);
-        connection.query(dbQuery, function (err, res) {
+        connection.query(dbQuery, vals, function (err, res) {
             if (err) {
                 throw err;
             }
@@ -52,17 +53,12 @@ var orm = {
 
     updateOne: function (table, objColVals, condition, callback) {
         var dbQuery =
-            "UPDATE " +
-            table +
-            " SET " +
-            translateSql(objColVals) +
-            //translateSql is a helper function
-            "WHERE " +
-            condition;
-
+            "UPDATE " + table + " SET " + translateSql(objColVals) +
+            " WHERE " + condition;
+        //translateSql is a helper function
 
         console.log(dbQuery);
-        connection.query(dbQuery, vals, function (err, res) {
+        connection.query(dbQuery, objColVals, function (err, res) {
             if (err) {
                 throw err;
             }

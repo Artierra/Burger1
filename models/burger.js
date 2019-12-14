@@ -1,5 +1,5 @@
 var orm = require("../config/orm");
-console.log("inthe models", orm)
+console.log("in the models", orm)
 var burger = {
     selectAll: function (callback) {
         orm.selectAll("burgers", function (res) {
@@ -7,18 +7,18 @@ var burger = {
         });
     },
     insertOne: function (cols, vals, callback) {
-        orm.selectAll("burgers", cols, vals, function (res) {
+        orm.insertOne("burgers", cols, vals, function (res) {
             callback(res);
         });
     },
     updateOne: function (objColVals, condition, callback) {
-        orm.selectAll("burgers", objColVals, condition, function (res) {
+        orm.updateOne("burgers", objColVals, condition, function (res) {
             callback(res);
         });
     },
 
     deleteOne: function (condition, callback) {
-        orm.selectAll("burgers", condition, function (res) {
+        orm.deleteOne("burgers", condition, function (res) {
             callback(res);
         });
     }

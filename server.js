@@ -39,8 +39,8 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/burgers_controller.js");
 app.use(routes);
 
-// // Here we introduce HTML routing to serve different HTML files
-// require("./app/routes/html-routes.js")(app);
+// burgers_controllers.js module-exports router
+
 
 // Starts the server to begin listening
 // =============================================================

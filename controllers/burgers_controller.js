@@ -3,6 +3,7 @@ var burger = require("../models/burger");
 
 var router = express.Router();
 
+// app.use("/", router);
 router.get("/test", function (req, res) {
     res.send('router is working fine')
 })
@@ -21,7 +22,7 @@ router.post("/api/burgers", function (req, res) {
         ["burger_name", "devoured"],
         [req.body.burger_name, req.body.devoured],
         function (result) {
-            //send backthe ID of a new burger
+            console.log(result);
             res.json({
                 id: result.insertId
             });
@@ -29,18 +30,19 @@ router.post("/api/burgers", function (req, res) {
 });
 
 router.put("/api/burgers/:id", function (req, res) {
-    var condition = "id - " + req.params.id;
+    var condition = "id = " + req.params.id;
     console.log("condition", condition);
     burger.updateOne({
-        devoure: req.body.devoured
+        devoured: req.body.devoured
     }, condition, function (result) {
-        if (result, changedRows === 0) {
+        if (result.changedRows === 0) {
             return res.status(404).end();
         } else {
             res.status(200).end();
         }
     });
 });
+
 // router.deleteOne(condition, function (result) {
 //     if ((result, changedRows === 0)) {
 //         return res.status(404).end();

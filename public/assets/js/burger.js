@@ -1,13 +1,16 @@
-//this file makes ajax calls
+//this file makes ajax calls all onclick and submit event
 
 $(function () {
-    $(" .create-form").on("submit", function (event) {
+    $(".burgSubmit").on("click", function (event) {
         event.preventDefault();
+        console.log("form is being created");
 
         var newBurger = {
             burger_name: $("#newburger").val().trim(),
-            devoured: 0
+            devoured: 0,
         };
+        console.log(newBurger);
+
         $.ajax("/api/burgers", {
             type: "POST",
             data: newBurger
@@ -19,19 +22,21 @@ $(function () {
 
     $(".eatburger").on("click", function (event) {
         event.preventDefault();
+
         var id = $(this).data("id");
         var devouredState = {
             devoured: 1
         };
 
-        $.ajax("/api/burgers", {
-            type: "PUT",//technically this should be PATCH
+        $.ajax(`/api/burgers/${id}`, {
+            type: "PUT", //technically this should be PATCH
             data: devouredState
         }).then(function () {
             console.log("Burger has been devoured");
             location.reload();
         });
     });
+
     $(".trashburger").on("click", function (event) {
         event.preventDefault();
         var id = $(this).data("id");

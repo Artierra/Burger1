@@ -1,62 +1,81 @@
 <div class="container">
     <div class="jumbotron">
-        <img src="../public/assets/img/burger.png" class="card-img-top" alt="burger image">
+        <img src="" class="card-img-top" alt="burger image">
         <h1 class="display-4">Eat the Burger!</h1>
-        <p class="card-text">Order some burgers, devour some burgers</p>
-        <hr class="my-4">
-        <p class="lead">
-            <input type="text" name="newburger" id="newburger" class="form-control" placeholder="Order here">
-            <a id="create-form" href="#" class="btn btn-primary">Submit</a>
+        <div class="create-form">
+
+            <p class="card-text">Order some burgers, devour some burgers</p>
+            <hr class="my-4">
+            <p class="lead">
+                <input type="text" name="newburger" id="newburger" class="create-form" placeholder="choose burger">
+                <button type="submit" class="burgSubmit btn btn-success">
+                    <span class="fa fa-thumbs-up"></span>
+                </button>
+            </p>
+        </div>
     </div>
 
+
     <form>
-        <div class="form-row">
-            <div class="col">
-                <label for="order" class="leftside">Burger Order</label>
-                {{!-- <input type="text" class="form-control" placeholder="Burger order here"> --}}
-                {{#each burgers}}
-                <p data-id={{this.id}}>{{this.burger_name}}</p>
-                {{/each}} </p>
-            </div>
-            <div class="col">
-                <label for="eat">Devour your burger</label>
-                {{!-- <input type="text" class="form-control" placeholder="Burgers eaten here"> --}}
-                <a id="create-form" href="#" class="btn btn-primary">Submit</a>
-                <!-- what happens after you submit-where do you put the html for this//-//other helpers if/unless -->
-                {{#each burgers}}
-                <p data-id={{this.id}}>{{this.burger_name}}</p>
-                {{/each}}
+        <div class="create-form">
+            <div class="form-row">
+                <div class="col">
+                    <label for="order">Burger Order</label>
+                    <input type="text" class="form-control" placeholder="Burger order here">
+                    <ul>
+                        {{#each burgers}}
+                        {{#unless this.devoured}}
+                        <span data-id={{this.id}}-{{this.burger_name}}></span>
+                        <button type="button" class="eatburger btn btn-warning" id="eatbutton" data-id="{{this.id}}"
+                            data-newDevoured="{{devour}}"><span class="fa fa-usd"></span>{{this.burger_name}}</button>
+                        {{/unless}}
+                        {{/each}}
+                    </ul>
+                    <hr>
+                </div>
+
+                <div class="col">
+                    <label for="eat"><strong>Devour your burger</strong></label>
+                    <input type="text" class="form-control" placeholder="">
+                    <button id="create-form" href="#" class="btn btn-primary"><span><i class="fas
+                                fa-teeth"></i></span>Eat
+                    </button>
+                    {{#each burgers}}
+                    {{#if devoured}}
+                    <span data-id={{this.id}}-{{this.burger_name}}></span>
+                    <button type=" button" class="trashburger btn btn-warning"" id=" trashbutton" data-id="{{this.id}}"
+                        data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
+                    {{/if}}
+                    {{/each}}
+
+
+                </div>
             </div>
         </div>
     </form>
 </div>
 
 
+<span "fas fa-utensils"></span>
 
 
+{{!-- <script>
 
-<script>
-    $('#create-form').on('click', function () {
-        console.log($('#newburger').val())
-
-    })
 
     $(function () {
         $(" .create-form").on("submit", function (event) {
             event.preventDefault();
+            console.log("burger is being made");
 
             var newBurger = {
-                burger_name: $("#newburger").val().trim(),
-                devoured: 0
-            };
-            $.ajax("/api/burgers", {
-                type: "POST",
-                data: newBurger
-            }).then(function () {
-                console.log("added new burger");
-                location.reload();
-            });
+                burger_name:
+                    $("#newburger").val().trim(), devoured: 0
+            }; $.ajax("/api/burgers", {
+                type: "POST", data:
+                    newBurger
+            }).then(function () { console.log("added new burger"); location.reload(); });
         });
+
 
         $(".eatburger").on("click", function (event) {
             event.preventDefault();
@@ -73,17 +92,11 @@
                 location.reload();
             });
         });
+
         $(".trashburger").on("click", function (event) {
-            event.preventDefault();
-            var id = $(this).data("id");
+            event.preventDefault(); var
+                id = $(this).data("id"); //send delete request $.ajax({ type: "DELETE" , url: "/api/burgers/" + id
+        }).then(location.reload());
 
-            //send delete request
-            $.ajax({
-                type: "DELETE",
-                url: "/api/burgers/" + id
-            }).then(location.reload());
-        });
-
-    });
-
-</script>
+    }); 
+</script> --}}
