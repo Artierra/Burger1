@@ -43,11 +43,17 @@ router.put("/api/burgers/:id", function (req, res) {
     });
 });
 
-// router.deleteOne(condition, function (result) {
-//     if ((result, changedRows === 0)) {
-//         return res.status(404).end();
-//     } else {
-//         res.status(200).end();
-//     }
-// })
+router.deleteOne("/api/burgers/:id",
+//do I have the right number of argument here?
+condition,
+function (result) {
+    if ((result, changedRows === 0)) {
+        return res.status(404).end();
+    } else {
+        res.status(200).end();
+    }
+})
+});
+
+
 module.exports = router;

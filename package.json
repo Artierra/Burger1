@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    //added this code for nodemon server-
     "dev": "nodemon server.js"
   },
   "repository": {

@@ -21,7 +21,8 @@
             <div class="form-row">
                 <div class="col">
                     <label for="order">Burger Order</label>
-                    <input type="text" class="form-control" placeholder="Burger order here">
+
+                    {{!-- <input type="text" class="form-control" placeholder="Burger order here"> --}}
                     <ul>
                         {{#each burgers}}
                         {{#unless this.devoured}}
@@ -36,18 +37,21 @@
 
                 <div class="col">
                     <label for="eat"><strong>Devour your burger</strong></label>
-                    <input type="text" class="form-control" placeholder="">
-                    <button id="create-form" href="#" class="btn btn-primary"><span><i class="fas
+                    {{!-- <input type="text" class="form-control" placeholder="{{this.burger_name}}"> --}}
+                    {{!-- <button id="create-form" href="#" class="btn btn-primary"><span><i class="fas
                                 fa-teeth"></i></span>Eat
-                    </button>
-                    {{#each burgers}}
-                    {{#if devoured}}
-                    <span data-id={{this.id}}-{{this.burger_name}}></span>
-                    <button type=" button" class="trashburger btn btn-warning"" id=" trashbutton" data-id="{{this.id}}"
-                        data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
-                    {{/if}}
-                    {{/each}}
+                    </button> --}}
 
+                    <ul>
+                        {{#each burgers}}
+                        {{#if devoured}}
+                        {{!-- <span data-id={{this.id}}-{{this.burger_name}}></span> --}}
+                        <button type="button" class="trashburger btn btn-warning " id="trashbutton"
+                            data-id="{{this.id}}" data-newDevoured="{{devour}}">
+                            {{this.burger_name}}</span></button>
+                        {{/if}}
+                        {{/each}}
+                    </ul>
 
                 </div>
             </div>
@@ -55,8 +59,9 @@
     </form>
 </div>
 
-
+<span class="fa fa-teeth-open"> </span>
 <span "fas fa-utensils"></span>
+<i class="fas fa-teeth-open"></i>
 
 
 {{!-- <script>

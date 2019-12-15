@@ -38,14 +38,19 @@ $(function () {
     });
 
     $(".trashburger").on("click", function (event) {
+        console.log("button clicked");
         event.preventDefault();
         var id = $(this).data("id");
 
         //send delete request
         $.ajax({
+            url: `/api/burgers/${id}`,
             type: "DELETE",
-            url: "/api/burgers/" + id
-        }).then(location.reload());
-    });
+            // data: devouredState
+        }).then(function () {
+            console.log("Burger has been deleted");
+            (location.reload());
+        });
 
-});
+    });
+})
