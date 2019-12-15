@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(107, 89, 124);
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#a88b91+0,a50013+100 */
+
+    /* Old browsers */
+    background: -moz-linear-gradient(45deg, #a88b91 0%, #a50013 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #a88b91 0%, #a50013 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #a88b91 0%, #a50013 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a88b91', endColorstr='#a50013', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+
+
+}
+
+.jumbotron {
+    background-image: url("../assets/img/burger2.gif");
+    background-color: rgb(192, 133, 133);
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fcf7cf+0,9b4123+74 */
+    background: #fcf7cf;
+    /* Old browsers */
+    background: -moz-linear-gradient(45deg, #fcf7cf 0%, #9b4123 74%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #fcf7cf 0%, #9b4123 74%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #fcf7cf 0%, #9b4123 74%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcf7cf', endColorstr='#9b4123', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+}
+
+.credit {
+    float: right;
+}

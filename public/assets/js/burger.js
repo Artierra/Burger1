@@ -38,19 +38,28 @@ $(function () {
     });
 
     $(".trashburger").on("click", function (event) {
-        console.log("button clicked");
+
         event.preventDefault();
+        console.log("button clicked");
         var id = $(this).data("id");
 
         //send delete request
         $.ajax({
             url: `/api/burgers/${id}`,
             type: "DELETE",
+            data: id
             // data: devouredState
-        }).then(function () {
-            console.log("Burger has been deleted");
-            (location.reload());
-        });
-
+        }).then(location.reload());
+        console.log("Burger has been deleted");
     });
-})
+
+});
+
+
+
+//   $(".trashburger").on("click", function (event) {
+//       event.preventDefault();
+//       var
+//           id = $(this).data("id"); //send delete request $.ajax({ type: "DELETE" , url: "/api/burgers/" + id
+//   }).then(location.reload());
+// function () {
