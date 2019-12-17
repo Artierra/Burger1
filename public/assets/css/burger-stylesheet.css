@@ -44,6 +44,11 @@ label {
 h1,
 h2,
 p {
-    font-style: oblique;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+    font-family: 'Gloria Hallelujah',
+        cursive;
+}
+
+.cardtext h2 {
+    font-family: 'Gloria Hallelujah',
+        cursive;
 }
