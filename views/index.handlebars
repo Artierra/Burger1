@@ -22,13 +22,12 @@
                 <div class="col">
                     <label for="order">Burger Order</label>
 
-                    {{!-- <input type="text" class="form-control" placeholder="Burger order here"> --}}
                     <ul>
                         {{#each burgers}}
                         {{#unless this.devoured}}
                         <span data-id={{this.id}}-{{this.burger_name}}></span>
                         <button type="button" class="eatburger btn btn-warning" data-id="{{this.id}}"
-                            data-newDevoured="{{devour}}"><span class="fa fa-usd"></span>{{this.burger_name}}</button>
+                            data-newDevoured="{{devour}}"><span class="fa fa-usd"></span> {{this.burger_name}}</button>
                         {{/unless}}
                         {{/each}}
                     </ul>
@@ -37,18 +36,15 @@
 
                 <div class="col">
                     <label for="eat">Devour your burger</label>
-                    {{!-- <input type="text" class="form-control" placeholder="{{this.burger_name}}"> --}}
-                    {{!-- <button id="create-form" href="#" class="btn btn-primary"><span><i class="fas
-                                fa-teeth"></i></span>Eat
-                    </button> --}}
+
 
                     <ul>
                         {{#each burgers}}
                         {{#if devoured}}
-                        {{!-- <span data-id={{this.id}}-{{this.burger_name}}></span> --}}
+
                         <button type="button" class="trashburger btn btn-warning fa fa-cutlery" data-id="{{this.id}}"
                             data-newDevoured="{{devour}}">
-                            {{this.burger_name}}</button>
+                            ...{{this.burger_name}}</button>
                         {{/if}}
                         {{/each}}
                     </ul>
