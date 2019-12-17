@@ -1,10 +1,10 @@
 <div class="container">
     <div class="jumbotron">
-        <img src="../public/assets/img/burger2.gif" class="card-img-top" alt="burger2">
+        <img src="assets/img/burger3.gif" class="card-img-top" id="burgerimage" alt="burger">
         <h1 class="display-4">Eat the Burger!</h1>
         <div class="create-form">
 
-            <p class="card-text">Order some burgers, devour some burgers</p>
+            <h2 class="card-text">Order some burgers, devour some burgers</h2>
             <hr class="my-4">
             <p class="lead">
                 <input type="text" name="newburger" id="newburger" class="create-form" placeholder="choose burger">
@@ -27,7 +27,7 @@
                         {{#each burgers}}
                         {{#unless this.devoured}}
                         <span data-id={{this.id}}-{{this.burger_name}}></span>
-                        <button type="button" class="eatburger btn btn-warning" id="eatbutton" data-id="{{this.id}}"
+                        <button type="button" class="eatburger btn btn-warning" data-id="{{this.id}}"
                             data-newDevoured="{{devour}}"><span class="fa fa-usd"></span>{{this.burger_name}}</button>
                         {{/unless}}
                         {{/each}}
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="col">
-                    <label for="eat"><strong>Devour your burger</strong></label>
+                    <label for="eat">Devour your burger</label>
                     {{!-- <input type="text" class="form-control" placeholder="{{this.burger_name}}"> --}}
                     {{!-- <button id="create-form" href="#" class="btn btn-primary"><span><i class="fas
                                 fa-teeth"></i></span>Eat
@@ -46,21 +46,24 @@
                         {{#each burgers}}
                         {{#if devoured}}
                         {{!-- <span data-id={{this.id}}-{{this.burger_name}}></span> --}}
-                        <button type="button" class="trashburger btn btn-warning " id="trashbutton"
-                            data-id="{{this.id}}" data-newDevoured="{{devour}}">
-                            {{this.burger_name}}</span></button>
+                        <button type="button" class="trashburger btn btn-warning " data-id="{{this.id}}"
+                            data-newDevoured="{{devour}}">
+                            {{this.burger_name}}</button>
                         {{/if}}
                         {{/each}}
                     </ul>
 
+                    {{!-- <span class="fa fa-teeth-open"> </span> --}}
+                    {{!-- <span "fas fa-utensils"></span>
+                    <i class="fas fa-teeth-open"></i> --}}
                 </div>
             </div>
         </div>
     </form>
 </div>
-<hr>
-<br><br><br><br><br>
-<div>
+
+<br>
+<div class="credit">
     <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px"
         href="https://unsplash.com/@pablomerchanm?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge"
         target="_blank" rel="noopener noreferrer"
@@ -72,49 +75,5 @@
                 <path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path>
             </svg></span><span style="display:inline-block;padding:2px 3px">Image by Pablo Merchán Montes</span></a>
 
-    <span class="fa fa-teeth-open"> </span>
-    <span "fas fa-utensils"></span>
-    <i class="fas fa-teeth-open"></i>
+
 </div>
-
-{{!-- <script>
-
-
-    $(function () {
-        $(" .create-form").on("submit", function (event) {
-            event.preventDefault();
-            console.log("burger is being made");
-
-            var newBurger = {
-                burger_name:
-                    $("#newburger").val().trim(), devoured: 0
-            }; $.ajax("/api/burgers", {
-                type: "POST", data:
-                    newBurger
-            }).then(function () { console.log("added new burger"); location.reload(); });
-        });
-
-
-        $(".eatburger").on("click", function (event) {
-            event.preventDefault();
-            var id = $(this).data("id");
-            var devouredState = {
-                devoured: 1
-            };
-
-            $.ajax("/api/burgers", {
-                type: "PUT",//technically this should be PATCH
-                data: devouredState
-            }).then(function () {
-                console.log("Burger has been devoured");
-                location.reload();
-            });
-        });
-
-        $(".trashburger").on("click", function (event) {
-            event.preventDefault(); var
-                id = $(this).data("id"); //send delete request $.ajax({ type: "DELETE" , url: "/api/burgers/" + id
-        }).then(location.reload());
-
-    }); 
-</script> --}}

@@ -1,6 +1,7 @@
 //this file makes ajax calls all onclick and submit event
 
-$(function () {
+$(document).ready(function () {
+    console.log('doc is ready')
     $(".burgSubmit").on("click", function (event) {
         event.preventDefault();
         console.log("form is being created");
@@ -47,10 +48,14 @@ $(function () {
         $.ajax({
             url: `/api/burgers/${id}`,
             type: "DELETE",
-            data: id
+
+        }).then(function (err, data) {
+            location.reload()
+            console.log("Burger has been deleted")
+            console.log("err", err)
+            console.log("data", data)
             // data: devouredState
-        }).then(location.reload());
-        console.log("Burger has been deleted");
+        });
     });
 
 });

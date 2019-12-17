@@ -21,11 +21,11 @@ body {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fcf7cf+0,9b4123+74 */
     background: #fcf7cf;
     /* Old browsers */
-    background: -moz-linear-gradient(45deg, #fcf7cf 0%, #9b4123 74%);
+    background: -moz-linear-gradient(-45deg, #fcf7cf 0%, #b8441d 72%);
     /* FF3.6-15 */
-    background: -webkit-linear-gradient(45deg, #fcf7cf 0%, #9b4123 74%);
+    background: -webkit-linear-gradient(-45deg, #fcf7cf 0%, #b8441d 72%);
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(45deg, #fcf7cf 0%, #9b4123 74%);
+    background: linear-gradient(-45deg, #fcf7cf 0%, #b8441d 72%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcf7cf', endColorstr='#9b4123', GradientType=1);
     /* IE6-9 fallback on horizontal gradient */
@@ -33,4 +33,17 @@ body {
 
 .credit {
     float: right;
+}
+
+label {
+    color: white;
+    font-size: 1rem;
+    font-style: bold;
+}
+
+h1,
+h2,
+p {
+    font-style: oblique;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }

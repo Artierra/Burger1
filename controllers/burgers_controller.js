@@ -13,7 +13,7 @@ router.get("/", function (req, res) {
         var hdbrsObj = {
             burgers: data
         };
-        console.log(hdbrsObj);
+        //console.log(hdbrsObj);
         res.render("index", hdbrsObj);
     });
 })
@@ -36,24 +36,32 @@ router.put("/api/burgers/:id", function (req, res) {
         devoured: req.body.devoured
     }, condition, function (result) {
         if (result.changedRows === 0) {
-            return res.status(404).end();
+            res.status(404).end();
         } else {
             res.status(200).end();
         }
     });
 });
 
-// router.deleteOne("/api/burgers/:id",
-//     //do I have the right number of argument here?
-//     condition,
-//     function (result) {
+router.delete("/api/burgers/:id",
+    //do I have the right number of argument here?
+    //condition,
+    function (req, res) {
+        console.log(`we hit the delete route`, req.params.id)
+        var condition = "id = " + req.params.id
+        burger.deleteOne(
+            condition,
+            function (result) {
+                console.log(result);
+                if (result.affectedRows == 1) {
+                    res.status(200).end();
+                } else {
+                    res.status(404).end();
+                }
+            })
 
-//         if ((result, changedRows === 0)) {
-//             return res.status(404).end();
-//         } else {
-//             res.status(200).end();
-//         }
-//     });
+    })
+
 
 
 
